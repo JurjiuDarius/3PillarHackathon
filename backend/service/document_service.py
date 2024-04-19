@@ -14,3 +14,8 @@ def save_file(file, user_id):
     db.session.commit()
 
     return "File uploaded and saved in database successfully", 201
+
+
+def get_documents(user_id):
+    documents = Document.query.filter_by(user_id=user_id).all()
+    return [document.serialize() for document in documents]

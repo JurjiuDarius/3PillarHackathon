@@ -13,3 +13,12 @@ def upload_document():
 
     response, status_code = save_file(file, user_id)
     return make_response(jsonify(response), status_code)
+
+
+@document_blueprint.route("/", methods=["GET"])
+def get_documents():
+    token = request.headers.get("Authorization").split(" ")[1]
+    user_id = get_user_id_from_token(token)
+
+    documents = get_documents(user_id)
+    return make_response(jsonify(documents), 200)
