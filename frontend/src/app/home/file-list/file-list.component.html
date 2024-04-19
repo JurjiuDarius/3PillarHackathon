@@ -2,11 +2,15 @@
   <div class="" fxLayout="column" fxLayoutAlign="start stretch">
     <mat-list>
       <mat-list-item *ngFor="let file of files">
-        <button mat-button>
+        <button mat-button (click)="setCurrentFile(file.id, file.name)">
           <strong>{{ file.name }}</strong>
         </button>
       </mat-list-item>
     </mat-list>
   </div>
+  <div *ngIf="currentFileName">
+    <strong>Current File: </strong>{{ currentFileName }}
+  </div>
+
   <app-upload></app-upload>
 </div>

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -16,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TokenInterceptor } from './utils/token.interceptor';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignUpComponent],
@@ -31,6 +31,7 @@ import { TokenInterceptor } from './utils/token.interceptor';
     HttpClientModule,
     MatDialogModule,
     ToolbarComponent,
+    CommonModule,
   ],
   providers: [
     {
