@@ -1,15 +1,25 @@
 <div class="chat-room-container">
   <div class="chat-messages">
-    <mat-list>
-      <mat-list-item *ngFor="let message of messages">
-        <div><strong>{{ message.user }}</strong>: {{ message.text }}</div>
-      </mat-list-item>
-    </mat-list>
+    <div class="message" *ngFor="let message of messages">
+      <strong class="message-user">{{ message.user }} :</strong>
+      <span class="message-content">{{ message.text }}</span>
+    </div>
   </div>
 
   <mat-form-field class="chat-input">
-    <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
-    <button mat-icon-button *ngIf="newMessage" matSuffix aria-label="Clear" (click)="clearMessage()">
+    <input
+      matInput
+      placeholder="Type a message"
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+    />
+    <button
+      mat-icon-button
+      *ngIf="newMessage"
+      matSuffix
+      aria-label="Clear"
+      (click)="clearMessage()"
+    >
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>

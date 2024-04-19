@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Message } from '../../models/message';
 import { PromptService } from './prompt.service';
-import {FileListService} from "../file-list/file-list.service";
+import { FileListService } from '../file-list/file-list.service';
 
 @Component({
   selector: 'app-prompt',
@@ -27,20 +27,35 @@ import {FileListService} from "../file-list/file-list.service";
 export class PromptComponent {
   messages: Message[] = [];
   newMessage: string = '';
-  constructor(private promptService: PromptService, private fileListService: FileListService) {}
+  constructor(
+    private promptService: PromptService,
+    private fileListService: FileListService
+  ) {}
   sendMessage() {
     if (this.newMessage.trim() !== '') {
       let message: Message = {
         id: this.messages.length + 1,
         text: this.newMessage,
         timestamp: new Date(),
-        user: localStorage.getItem('currentUserId') || 'Anonymous',
+        user: 'User',
       };
       this.messages.push(message);
       this.newMessage = '';
       this.promptService
-        .getAnswerForPrompt(message.text, this.fileListService.currentChapter.value, this.fileListService.currentDocumentId.value)
-        .subscribe((response) => {});
+        .getAnswerForPrompt(
+          message.text,
+          this.fileListService.currentChapter.value,
+          this.fileListService.currentDocumentId.value
+        )
+        .subscribe((response) => {
+          let message: Message = {
+            id: this.messages.length + 1,
+            text: response,
+            timestamp: new Date(),
+            user: 'Friday',
+          };
+          this.messages.push(message);
+        });
     }
   }
 

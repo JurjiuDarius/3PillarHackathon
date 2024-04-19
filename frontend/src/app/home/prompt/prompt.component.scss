@@ -1,36 +1,33 @@
 .chat-room-container {
-  width: 79vw;
-  height: 85vh; /* vh stands for viewport height */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: auto;
-  display: flex; /* Use flexbox to control child elements */
-  flex-direction: column; /* Arrange child elements vertically */
+  display: flex;
+  flex-direction: column;
+  width: 78vw; /* viewport width */
+  height: 90vh;
+  padding: 1rem;
 }
 
 .chat-messages {
   flex: 1;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.chapter-input {
-  width: 100%;
-  margin-top: 10px;
+.message {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+}
 
+.message-user {
+  font-weight: bold;
+}
+
+.message-content {
+  word-break: break-word;
 }
 
 .chat-input {
-  width: 100%;
-}
-
-.mat-list-item {
-  padding: 10px;
-}
-
-.mat-form-field {
-  width: calc(100% - 16px);
-}
-
-.mat-icon-button {
-  margin-left: -8px;
+  margin-top: 1rem;
 }

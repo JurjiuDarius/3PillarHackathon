@@ -36,32 +36,48 @@ def answer_question_for_chapter(question, document_id, chapter):
 
     for ref in chapter_refs:
 
-        html_content = (
-            book.get_item_with_href(chapter_refs[7]).get_content().decode("utf-8")
-        )
+        html_content = book.get_item_with_href(ref).get_content().decode("utf-8")
         # Extract just the text, get rid of all other tags
         soup = BeautifulSoup(html_content, "html.parser")
 
         # Extract just the text content
         text_content = soup.get_text()
-        # print( text_content)
-        for ref in chapter_refs:
-            html_content = book.get_item_with_href(ref).get_content().decode("utf-8")
-            soup = BeautifulSoup(html_content, "html.parser")
 
-            text_content = soup.get_text()
-            split_content = text_content.split("\n")
-            split_content = [x for x in split_content if x != ""]
-            if len(split_content) > 0:
-                if len(split_content[0]) < 50:
-                    if split_content[0].lower() == chapter.lower():
-                        answer = get_gemini_answer(question, text_content)
-                        return answer, 200
+        split_content = text_content.split("\n")
+        split_content = [x for x in split_content if x != ""]
+        if len(split_content) > 0:
+            if len(split_content[0]) < 50:
+                if split_content[0].lower().strip() == chapter.lower().strip():
+                    answer = get_gemini_answer(question, text_content)
+                    return answer, 200
 
     return "The chapter does not exist", 200
 
 
+def get_chapter_titles(document_path):
+
+    book = epub.read_epub(document_path)
+    chapter_refs = get_chapter_refs(book)
+    chapter_names = []
+    for ref in chapter_refs:
+
+        html_content = book.get_item_with_href(ref).get_content().decode("utf-8")
+        # Extract just the text, get rid of all other tags
+        soup = BeautifulSoup(html_content, "html.parser")
+
+        # Extract just the text content
+        text_content = soup.get_text()
+
+        split_content = text_content.split("\n")
+        split_content = [x for x in split_content if x != ""]
+        if len(split_content) > 0:
+            if len(split_content[0]) < 50:
+                chapter_names.append(split_content[0])
+
+    return chapter_names
+
+
 def get_gemini_answer(question, text_content):
     prompt = PROMPT.format(text_content, question)
-    answer = model.generate_content("What is the meaning of life?")
-    return response.text
+    answer = model.generate_content(prompt)
+    return answer.text
