@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { UploadService } from './upload/upload.service';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatMenuModule} from "@angular/material/menu";
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-file-list',
@@ -26,9 +26,9 @@ import {MatMenuModule} from "@angular/material/menu";
 })
 export class FileListComponent implements OnDestroy {
   files: EBook[] = [];
-  chapters: string[] = []
+  chapters: string[] = [];
 
-  currentFileId: number = 0
+  currentFileId: number = 0;
   currentFileName: string = '';
   currentChapter: string = '';
 
@@ -48,14 +48,15 @@ export class FileListComponent implements OnDestroy {
       }
     );
 
-    this.fileChaptersSubscription = this.uploadService.chaptersFetched$.subscribe(
-      () => {
-        this.service.getChaptersForDocument(this.currentFileId).subscribe((chapters: string[]) => {
-          console.log('Chapters:', chapters);
-          this.chapters = chapters;
-        });
-      }
-    );
+    this.fileChaptersSubscription =
+      this.uploadService.chaptersFetched$.subscribe(() => {
+        this.service
+          .getChaptersForDocument(this.currentFileId)
+          .subscribe((chapters: any) => {
+            console.log('Chapters:', chapters);
+            this.chapters = chapters[0];
+          });
+      });
 
     this.uploadService.notifyUploadComplete();
   }

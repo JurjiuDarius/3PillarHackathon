@@ -1,4 +1,8 @@
-from service.document_service import save_file, get_documents_for_user
+from service.document_service import (
+    save_file,
+    get_documents_for_user,
+    get_chapters_for_document,
+)
 from flask import Blueprint, request, jsonify, make_response
 from utils.jwt import get_user_id_from_token
 
@@ -22,3 +26,12 @@ def get_documents():
 
     documents = get_documents_for_user(user_id)
     return make_response(jsonify(documents), 200)
+
+
+@document_blueprint.route("/<int:documentId>/chapters")
+def get_chapters(documentId):
+    token = request.headers.get("Authorization").split(" ")[1]
+    user_id = get_user_id_from_token(token)
+
+    chapters = get_chapters_for_document(user_id, documentId)
+    return make_response(jsonify(chapters), 200)
