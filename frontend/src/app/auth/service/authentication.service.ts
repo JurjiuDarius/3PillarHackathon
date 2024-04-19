@@ -13,12 +13,14 @@ export class AuthenticationService {
   private readonly authChanges: BehaviorSubject<boolean>;
 
   constructor(private http: HttpClient) {
-    this.authChanges = new BehaviorSubject<boolean>(localStorage.getItem('jwtToken') !== null);
+    this.authChanges = new BehaviorSubject<boolean>(
+      localStorage.getItem('jwtToken') !== null
+    );
   }
 
   public logIn(email: string, password: string): Observable<any> {
     return this.http
-      .post(`${this.apiUrl}/login/`, { email, password })
+      .post(`${this.apiUrl}/auth/login/`, { email, password })
       .pipe(
         tap((response: any) => {
           this.setLocalStorage(response.token);
