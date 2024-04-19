@@ -8,13 +8,14 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule } from '@angular/material/dialog';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import {ToolbarComponent} from "./toolbar/toolbar.component";
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { TokenInterceptor } from './utils/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignUpComponent],
@@ -31,7 +32,13 @@ import {ToolbarComponent} from "./toolbar/toolbar.component";
     MatDialogModule,
     ToolbarComponent,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
