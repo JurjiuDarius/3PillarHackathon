@@ -1,5 +1,5 @@
-<div class="chat-room-container" fxLayout="column" fxLayoutAlign="center center">
-  <div class="chat-messages" fxLayout="column" fxLayoutAlign="start stretch">
+<div class="chat-room-container">
+  <div class="chat-messages">
     <mat-list>
       <mat-list-item *ngFor="let message of messages">
         <div><strong>{{ message.user }}</strong>: {{ message.text }}</div>
