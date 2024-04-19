@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import { UploadComponent } from "./upload/upload.component";
 import { AuthenticationGuard } from "./auth/guard/authentication.guard";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   // { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '',
-    component: UploadComponent,
+    component: HomeComponent,
     pathMatch: 'full',
     canActivate: [AuthenticationGuard] },
   {
@@ -17,10 +17,6 @@ const routes: Routes = [
   },
   { path: 'signup',
     component: SignUpComponent
-  },
-  {
-    path: 'upload',
-    component: UploadComponent,
   },
 ];
 

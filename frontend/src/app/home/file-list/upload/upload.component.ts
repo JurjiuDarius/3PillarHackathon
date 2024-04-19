@@ -7,7 +7,8 @@ import {UploadService} from "./upload.service";
 import {MatDialog} from "@angular/material/dialog";
 import {
   InvalidUploadFileTypeDialogComponent
-} from "../dialogs/invalid-upload-file-type-dialog/invalid-upload-file-type-dialog.component";
+} from "../../../dialogs/invalid-upload-file-type-dialog/invalid-upload-file-type-dialog.component";
+import {PromptComponent} from "../../prompt/prompt.component";
 
 @Component({
   selector: 'app-upload',
@@ -16,7 +17,8 @@ import {
     NgIf,
     MatIconModule,
     MatButtonModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    PromptComponent
   ],
   templateUrl: './upload.component.html',
   styleUrl: './upload.component.scss'

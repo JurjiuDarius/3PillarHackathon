@@ -1,0 +1,31 @@
+.file-list-container {
+  width: 100%;
+  height: 100vh; /* vh stands for viewport height */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex; /* Use flexbox to control child elements */
+  flex-direction: column; /* Arrange child elements vertically */
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chat-input {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.mat-list-item {
+  padding: 10px;
+}
+
+.mat-form-field {
+  width: calc(100% - 16px);
+}
+
+.mat-icon-button {
+  margin-left: -8px;
+}

@@ -1,0 +1,6 @@
+.upload-container {
+  display: flex; /* Use flexbox to control child elements */
+  flex-direction: row; /* Arrange child elements horizontally */
+  justify-content: normal; /* Align items with space between them */
+  align-items: center;
+}

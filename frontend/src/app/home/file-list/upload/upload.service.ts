@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../environments/environment";
-import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
+import {Observable, Subject, Subscription} from "rxjs";
+import {EBook} from "../../../models/ebook";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UploadService {
 
   private apiUrl = environment.apiURL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {  }
 
   uploadFile(file: File): Observable<any> {
     const formData = new FormData();
