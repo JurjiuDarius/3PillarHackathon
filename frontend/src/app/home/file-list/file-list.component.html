@@ -2,14 +2,22 @@
   <div class="file-item">
     <mat-list>
       <mat-list-item *ngFor="let file of files">
-        <button mat-button (click)="setCurrentFile(file.id, file.name)">
-          <strong>{{ file.name }}</strong>
+        <button mat-button
+                [matMenuTriggerFor]="menu"
+                (click)="setCurrentFile(file.id, file.name)">
+                  <strong>{{ file.name }}</strong>
         </button>
+        <mat-menu #menu="matMenu">
+          <button *ngFor="let chapter of chapters" mat-menu-item (click)="setCurrentChapter(chapter)">{{ chapter }}</button>
+        </mat-menu>
       </mat-list-item>
     </mat-list>
   </div>
   <div *ngIf="currentFileName">
     <strong>Current File: </strong>{{ currentFileName }}
+  </div>
+  <div *ngIf="currentChapter">
+    <strong>Current Chapter: </strong>{{ currentChapter }}
   </div>
 
   <app-upload></app-upload>

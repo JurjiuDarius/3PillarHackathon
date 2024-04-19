@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { UploadService } from './upload/upload.service';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatMenuModule} from "@angular/material/menu";
 
 @Component({
   selector: 'app-file-list',
@@ -18,15 +19,21 @@ import { BrowserModule } from '@angular/platform-browser';
     NgForOf,
     MatButtonModule,
     CommonModule,
+    MatMenuModule,
   ],
   templateUrl: './file-list.component.html',
   styleUrl: './file-list.component.scss',
 })
 export class FileListComponent implements OnDestroy {
   files: EBook[] = [];
+  chapters: string[] = []
+
+  currentFileId: number = 0
   currentFileName: string = '';
-  currentFileId: number = 0;
+  currentChapter: string = '';
+
   fileUploadSubscription: Subscription;
+  fileChaptersSubscription: Subscription;
 
   constructor(
     private service: FileListService,
@@ -41,13 +48,30 @@ export class FileListComponent implements OnDestroy {
       }
     );
 
+    this.fileChaptersSubscription = this.uploadService.chaptersFetched$.subscribe(
+      () => {
+        this.service.getChaptersForDocument(this.currentFileId).subscribe((chapters: string[]) => {
+          console.log('Chapters:', chapters);
+          this.chapters = chapters;
+        });
+      }
+    );
+
     this.uploadService.notifyUploadComplete();
   }
   setCurrentFile(id: number, name: string) {
     this.currentFileName = name;
     this.currentFileId = id;
+    this.service.setCurrentDocumentId(id);
+
+    this.uploadService.notifyChaptersFetched();
   }
   ngOnDestroy() {
     this.fileUploadSubscription.unsubscribe();
+  }
+
+  setCurrentChapter(chapter: string) {
+    this.currentChapter = chapter;
+    this.service.setCurrentChapter(chapter);
   }
 }
