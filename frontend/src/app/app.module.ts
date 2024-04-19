@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDialogModule } from "@angular/material/dialog";
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import {ToolbarComponent} from "./toolbar/toolbar.component";
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignUpComponent],
@@ -28,6 +29,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     MatRadioModule,
     HttpClientModule,
     MatDialogModule,
+    ToolbarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
