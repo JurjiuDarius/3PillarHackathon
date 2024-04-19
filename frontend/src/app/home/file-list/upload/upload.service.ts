@@ -13,6 +13,9 @@ export class UploadService {
   private uploadComplete = new Subject<void>();
   uploadComplete$ = this.uploadComplete.asObservable();
 
+  private chaptersFetched = new Subject<void>();
+  chaptersFetched$ = this.chaptersFetched.asObservable();
+
   constructor(private http: HttpClient) {  }
 
   uploadFile(file: File): Observable<any> {
@@ -26,5 +29,9 @@ export class UploadService {
 
   notifyUploadComplete() {
     this.uploadComplete.next();
+  }
+
+  notifyChaptersFetched() {
+    this.chaptersFetched.next();
   }
 }

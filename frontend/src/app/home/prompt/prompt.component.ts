@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Message } from '../../models/message';
 import { PromptService } from './prompt.service';
+import {FileListService} from "../file-list/file-list.service";
 
 @Component({
   selector: 'app-prompt',
@@ -26,8 +27,7 @@ import { PromptService } from './prompt.service';
 export class PromptComponent {
   messages: Message[] = [];
   newMessage: string = '';
-  chapterToWorkOn: string = '';
-  constructor(private promptService: PromptService) {}
+  constructor(private promptService: PromptService, private fileListService: FileListService) {}
   sendMessage() {
     if (this.newMessage.trim() !== '') {
       let message: Message = {
@@ -39,10 +39,8 @@ export class PromptComponent {
       this.messages.push(message);
       this.newMessage = '';
       this.promptService
-        .getAnswerForPrompt(message.text, this.chapterToWorkOn, 1)
+        .getAnswerForPrompt(message.text, this.fileListService.currentChapter.value, this.fileListService.currentDocumentId.value)
         .subscribe((response) => {});
-      console.log('Prompt:', message.text);
-      console.log('Chapter:', this.chapterToWorkOn);
     }
   }
 
