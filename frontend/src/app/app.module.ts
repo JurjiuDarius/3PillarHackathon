@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -25,6 +26,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatInputModule,
     MatRadioModule,
     HttpClientModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
