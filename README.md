@@ -11,5 +11,5 @@ Friday is a great tool for students, researchers, and book lovers who want to qu
 ## Images of Friday in Action
 
 ![PromptExample1](./PromptExample1.png)
-![PromptExample2](./PromptExample2.png)
+![PromptExample2](./PromptExample2.jpg)
 
