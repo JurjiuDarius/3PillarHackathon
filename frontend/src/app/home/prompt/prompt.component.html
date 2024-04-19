@@ -7,6 +7,9 @@
     </mat-list>
   </div>
 
+  <mat-form-field class="chapter-input">
+    <input matInput placeholder="Mention the chapter to work on" [(ngModel)]="chapterToWorkOn">
+  </mat-form-field>
   <mat-form-field class="chat-input">
     <input matInput placeholder="Type a message" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
     <button mat-icon-button *ngIf="newMessage" matSuffix aria-label="Clear" (click)="clearMessage()">

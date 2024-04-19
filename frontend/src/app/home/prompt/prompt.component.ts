@@ -26,6 +26,7 @@ import { PromptService } from './prompt.service';
 export class PromptComponent {
   messages: Message[] = [];
   newMessage: string = '';
+  chapterToWorkOn: string = '';
   constructor(private promptService: PromptService) {}
   sendMessage() {
     if (this.newMessage.trim() !== '') {
@@ -38,8 +39,10 @@ export class PromptComponent {
       this.messages.push(message);
       this.newMessage = '';
       this.promptService
-        .getAnswerForPrompt(message.text, 'Chapter 11', 1)
+        .getAnswerForPrompt(message.text, this.chapterToWorkOn, 1)
         .subscribe((response) => {});
+      console.log('Prompt:', message.text);
+      console.log('Chapter:', this.chapterToWorkOn);
     }
   }
 
