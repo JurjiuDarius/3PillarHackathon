@@ -58,6 +58,7 @@ export class UploadComponent {
           console.log('Upload progress:', this.uploadProgress);
         } else if (event.type === 4) {
           console.log('Upload complete');
+          this.service.notifyUploadComplete()
         }
       },
       error => {

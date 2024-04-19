@@ -2,7 +2,9 @@
   <div class="" fxLayout="column" fxLayoutAlign="start stretch">
     <mat-list>
       <mat-list-item *ngFor="let file of files">
-        <div><strong>{{ file.name }}</strong>></div>
+        <button mat-button>
+          <strong>{{ file.name }}</strong>
+        </button>
       </mat-list-item>
     </mat-list>
   </div>

@@ -10,6 +10,9 @@ import {EBook} from "../../../models/ebook";
 export class UploadService {
   private apiUrl = environment.apiURL;
 
+  private uploadComplete = new Subject<void>();
+  uploadComplete$ = this.uploadComplete.asObservable();
+
   constructor(private http: HttpClient) {  }
 
   uploadFile(file: File): Observable<any> {
@@ -19,5 +22,9 @@ export class UploadService {
       reportProgress: true,
       observe: 'events',
     });
+  }
+
+  notifyUploadComplete() {
+    this.uploadComplete.next();
   }
 }
