@@ -11,8 +11,7 @@ def login(data):
     query_class = User
 
     user = query_class.query.filter_by(email=email).first()
-    if not user or not user.is_active:
-        return {"message": "User not found!"}, 404
+
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
     if not hashed_password == user.password:
         return {"message": "Incorrect password!"}, 401
