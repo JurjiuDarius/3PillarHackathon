@@ -37,7 +37,7 @@ export class PromptComponent {
         id: this.messages.length + 1,
         text: this.newMessage,
         timestamp: new Date(),
-        user: localStorage.getItem('currentUserId') || 'Anonymous',
+        user: 'User',
       };
       this.messages.push(message);
       this.newMessage = '';
