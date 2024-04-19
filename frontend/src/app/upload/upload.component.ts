@@ -47,7 +47,21 @@ export class UploadComponent {
     this.selectedFile = file;
     console.log('Uploading:', this.selectedFile.name);
 
-
+    this.service.uploadFile(this.selectedFile).subscribe(
+      event => {
+        if (event.type === 1) {
+          console.log('Upload started');
+        } else if (event.type === 3) {
+          // this.uploadProgress = Math.round(100 * event.loaded / event.total);
+          console.log('Upload progress:', this.uploadProgress);
+        } else if (event.type === 4) {
+          console.log('Upload complete');
+        }
+      },
+      error => {
+        console.error('Upload failed:', error);
+      }
+    );
 
     this.selectedFile = null;
   }
