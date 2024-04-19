@@ -39,10 +39,16 @@ export class PromptComponent {
       this.messages.push(message);
       this.newMessage = '';
       this.promptService
-        .getAnswerForPrompt(message.text, this.chapterToWorkOn, 1)
-        .subscribe((response) => {});
-      console.log('Prompt:', message.text);
-      console.log('Chapter:', this.chapterToWorkOn);
+        .getAnswerForPrompt(message.text, this.chapterToWorkOn, 3)
+        .subscribe((response) => {
+          let message: Message = {
+            id: this.messages.length + 1,
+            text: response,
+            timestamp: new Date(),
+            user: 'Friday',
+          };
+          this.messages.push(message);
+        });
     }
   }
 

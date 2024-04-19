@@ -17,7 +17,7 @@ export class PromptService {
     documentId: number
   ): Observable<any> {
     return this.http.post(`${this.apiUrl}/prompt/answer/`, {
-      prompt,
+      question: prompt,
       documentId,
       chapter,
     });

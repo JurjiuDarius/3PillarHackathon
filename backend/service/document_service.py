@@ -6,6 +6,9 @@ import os
 
 def save_file(file, user_id):
     filename = secure_filename(file.filename)
+    document = Document.query.filter_by(name=filename).all()
+    if document:
+        return "File already exists", 409
     file_path = os.path.join("./files", filename)
     file.save(file_path)
 

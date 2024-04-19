@@ -9,7 +9,7 @@ prompt_blueprint = Blueprint("prompt", __name__, url_prefix="/prompt")
 def answer_prompt():
     data = request.json
     question = data["question"]
-    document_id = data["document_id"]
+    document_id = data["documentId"]
     chapter = data["chapter"]
 
     response, status_code = answer_question_for_chapter(question, document_id, chapter)
