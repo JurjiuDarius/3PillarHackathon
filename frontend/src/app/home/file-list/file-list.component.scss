@@ -1,6 +1,6 @@
 .file-list-container {
-  width: 100%;
-  height: 100vh; /* vh stands for viewport height */
+  width: 19vw;
+  height: 85vh; /* vh stands for viewport height */
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
@@ -8,7 +8,7 @@
   flex-direction: column; /* Arrange child elements vertically */
 }
 
-.chat-messages {
+.file-item {
   flex: 1;
   overflow-y: auto;
 }
