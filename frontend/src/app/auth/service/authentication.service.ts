@@ -10,7 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class AuthenticationService {
   private apiUrl = environment.apiURL;
-  private authChanges: BehaviorSubject<boolean>;
+  private readonly authChanges: BehaviorSubject<boolean>;
 
   constructor(private http: HttpClient) {
     this.authChanges = new BehaviorSubject<boolean>(localStorage.getItem('jwtToken') !== null);
