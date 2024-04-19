@@ -20,8 +20,4 @@ export class UploadService {
       observe: 'events',
     });
   }
-
-  getDocumentsForUser(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/document/`);
-  }
 }

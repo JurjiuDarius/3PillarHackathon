@@ -1,6 +1,6 @@
 from service.document_service import save_file, get_documents_for_user
 from flask import Blueprint, request, jsonify, make_response
-from utils.jwt import get_user_id_from_token, 
+from utils.jwt import get_user_id_from_token
 
 document_blueprint = Blueprint("document", __name__, url_prefix="/document")
 

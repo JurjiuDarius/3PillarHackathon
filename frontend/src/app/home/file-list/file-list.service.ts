@@ -12,7 +12,7 @@ export class FileListService {
 
   constructor(private http: HttpClient) {  }
 
-  getFiles(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/documents/`);
+  getDocumentsForUser(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/document/`);
   }
 }
