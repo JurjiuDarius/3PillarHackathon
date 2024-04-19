@@ -2,10 +2,20 @@
   <div class="chat-messages">
     <div class="message" *ngFor="let message of messages">
       <strong class="message-user">{{ message.user }} :</strong>
-      <span class="message-content">{{ message.text }}</span>
+      <span class="message-content" [innerHTML]="message.text"></span>
     </div>
   </div>
-
+  <button
+    mat-icon-button
+    *ngIf="
+      messages.length > 0 && messages[messages.length - 1].user === 'Friday'
+    "
+    matSuffix
+    aria-label="Clear"
+    (click)="moreInfo()"
+  >
+    <mat-icon>info</mat-icon>
+  </button>
   <mat-form-field class="chat-input">
     <input
       matInput

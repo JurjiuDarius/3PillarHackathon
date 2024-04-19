@@ -58,7 +58,19 @@ export class PromptComponent {
         });
     }
   }
-
+  moreInfo() {
+    this.promptService
+      .moreInfo(this.messages[this.messages.length - 1].text)
+      .subscribe((response) => {
+        let message: Message = {
+          id: this.messages.length + 1,
+          text: response,
+          timestamp: new Date(),
+          user: 'Friday',
+        };
+        this.messages.push(message);
+      });
+  }
   clearMessage() {
     this.newMessage = '';
   }

@@ -80,4 +80,12 @@ def get_chapter_titles(document_path):
 def get_gemini_answer(question, text_content):
     prompt = PROMPT.format(text_content, question)
     answer = model.generate_content(prompt)
-    return answer.text
+    text = answer.text.replace("**", "<br>")
+    return text
+
+
+def get_more_info(text_content):
+    prompt = f"{text_content} Based on the above text, provide more information. "
+    answer = model.generate_content(prompt)
+    text = answer.text.replace("**", "<br>")
+    return text, 200

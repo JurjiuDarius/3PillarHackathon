@@ -22,4 +22,9 @@ export class PromptService {
       chapter,
     });
   }
+  public moreInfo(text: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/prompt/info/`, {
+      text,
+    });
+  }
 }
