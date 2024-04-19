@@ -3,7 +3,7 @@
   height: 85vh; /* vh stands for viewport height */
   border: 1px solid #ccc;
   border-radius: 5px;
-  overflow: hidden;
+  overflow: auto;
   display: flex; /* Use flexbox to control child elements */
   flex-direction: column; /* Arrange child elements vertically */
 }
