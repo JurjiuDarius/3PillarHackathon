@@ -21,8 +21,7 @@ export class LoginComponent {
     this.authService.logOut();
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      role: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
@@ -31,8 +30,7 @@ export class LoginComponent {
       this.authService
         .logIn(
           this.loginForm.get('email')?.value,
-          this.loginForm.get('password')?.value,
-          this.loginForm.get('role')?.value
+          this.loginForm.get('password')?.value
         )
         .subscribe({
           next: (response) => {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import * as jwt_decode from 'jwt-decode';
@@ -10,15 +10,15 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class AuthenticationService {
   private apiUrl = environment.apiURL;
-  private authChanges: Subject<boolean>;
+  private authChanges: BehaviorSubject<boolean>;
 
   constructor(private http: HttpClient) {
-    this.authChanges = new Subject<boolean>();
+    this.authChanges = new BehaviorSubject<boolean>(localStorage.getItem('jwtToken') !== null);
   }
 
-  public logIn(email: string, password: string, role: string): Observable<any> {
+  public logIn(email: string, password: string): Observable<any> {
     return this.http
-      .post(`${this.apiUrl}/login/`, { email, password, role })
+      .post(`${this.apiUrl}/login/`, { email, password })
       .pipe(
         tap((response: any) => {
           this.setLocalStorage(response.token);
@@ -54,7 +54,7 @@ export class AuthenticationService {
       return null;
     }
   }
-  public getAuthChanges(): Subject<boolean> {
+  public getAuthChanges(): BehaviorSubject<boolean> {
     return this.authChanges;
   }
 }
